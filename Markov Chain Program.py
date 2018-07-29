@@ -1,10 +1,14 @@
 #! /usr/bin/python
 
 import random
-import shelve
 
-predictions = shelve.open('predictions.db')
 firstLetterPredictions = []
+secondLetterPredictions = {'a': [], 'b': [], 'c': [], 'd': [], 'e': [],
+'f': [], 'g': [], 'h': [], 'i': [], 'j': [],
+'k': [], 'l': [], 'm': [], 'n': [], 'o': [],
+'p': [], 'q': [], 'r': [], 's': [], 't': [],
+'u': [], 'v': [], 'w': [], 'x': [], 'y': [],
+'z': []}
 predictionsDict = {'a': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], 'g': [], 'h': [], 'i': [], 'j': [], 'k': [], 'l': [], 'm': [], 'n': [], 'o': [], 'p': [], 'q': [], 'r': [], 's': [], 't': [], 'u': [], 'v': [], 'w': [], 'x': [], 'y': [], 'z': []},
 'b': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], 'g': [], 'h': [], 'i': [], 'j': [], 'k': [], 'l': [], 'm': [], 'n': [], 'o': [], 'p': [], 'q': [], 'r': [], 's': [], 't': [], 'u': [], 'v': [], 'w': [], 'x': [], 'y': [], 'z': []},
 'c': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], 'g': [], 'h': [], 'i': [], 'j': [], 'k': [], 'l': [], 'm': [], 'n': [], 'o': [], 'p': [], 'q': [], 'r': [], 's': [], 't': [], 'u': [], 'v': [], 'w': [], 'x': [], 'y': [], 'z': []},
@@ -31,42 +35,10 @@ predictionsDict = {'a': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], '
 'x': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], 'g': [], 'h': [], 'i': [], 'j': [], 'k': [], 'l': [], 'm': [], 'n': [], 'o': [], 'p': [], 'q': [], 'r': [], 's': [], 't': [], 'u': [], 'v': [], 'w': [], 'x': [], 'y': [], 'z': []},
 'y': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], 'g': [], 'h': [], 'i': [], 'j': [], 'k': [], 'l': [], 'm': [], 'n': [], 'o': [], 'p': [], 'q': [], 'r': [], 's': [], 't': [], 'u': [], 'v': [], 'w': [], 'x': [], 'y': [], 'z': []},
 'z': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], 'g': [], 'h': [], 'i': [], 'j': [], 'k': [], 'l': [], 'm': [], 'n': [], 'o': [], 'p': [], 'q': [], 'r': [], 's': [], 't': [], 'u': [], 'v': [], 'w': [], 'x': [], 'y': [], 'z': []}}
-secondLetterPredictions = {'a': [], 'b': [], 'c': [], 'd': [], 'e': [],
-'f': [], 'g': [], 'h': [], 'i': [], 'j': [],
-'k': [], 'l': [], 'm': [], 'n': [], 'o': [],
-'p': [], 'q': [], 'r': [], 's': [], 't': [],
-'u': [], 'v': [], 'w': [], 'x': [], 'y': [],
-'z': []}
 totalValue = 0
 
-for names in range(100):
-	name = input('Enter Name: ')
-	value = input('Enter Value ')
-	name = name.lower()
-	repetitions = 0
-	for letter in name:
-		if letter == name[0]:
-			for repetition in range(int(value)):
-				firstLetterPredictions.append(letter)
-		elif letter == name[1]:
-			for repetition in range(int(value)):
-				secondLetterPredictions[name[0]].append(letter)
-		else:
-			for repetition in range(int(value)):
-				predictionsDict[name[repetitions - 2]][name[repetitions - 1]].append(letter)
-		repetitions += 1
-
-print(firstLetterPredictions)
-print('')
-print(secondLetterPredictions)
-print('')
-print(predictionsDict)
-print('')
-print(totalValue)
-print('')
-if input('Enter data?\n') == 'Yes':
-	predictions['firstLetterPredictions'] = firstLetterPredictions
-	predictions['secondLetterPredictions'] = secondLetterPredictions
-	predictions['predictionsDict'] = predictionsDict
-	predictions['totalValue'] = totalValue
-	predictions.close()
+#TODO: Make txt file with names and values
+#TODO: Make code to load file and sort it
+#TODO: Make code to extract data from the sorted file
+#TODO: Make code to generate Markov chain
+#TODO: If generated responses are weird, add more pieces of data. For example, if names are too long and/or too short, have the program collect a minimum and maximum length from the names
