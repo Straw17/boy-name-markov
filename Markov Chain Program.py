@@ -37,8 +37,15 @@ predictionsDict = {'a': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], '
 'z': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], 'g': [], 'h': [], 'i': [], 'j': [], 'k': [], 'l': [], 'm': [], 'n': [], 'o': [], 'p': [], 'q': [], 'r': [], 's': [], 't': [], 'u': [], 'v': [], 'w': [], 'x': [], 'y': [], 'z': []}}
 totalValue = 0
 
-#TODO: Make txt file with names and values
 #TODO: Make code to load file and sort it
-#TODO: Make code to extract data from the sorted file
+txtFile = open('C:\\Users\\Evan Conway\\Desktop\\Programming\\Python\\Algorithms\\Markov Chain\\Names and Values.txt')
+namesAndValues = txtFile.read()
+namesAndValues = namesAndValues.split('\n')
+for item in range(len(namesAndValues)):
+	namesAndValues[item] = namesAndValues[item].split(':')
+	#TODO: Make code to extract data from the sorted file
+	for value in range(int(namesAndValues[item][1])):
+		name = namesAndValues[item][0]
+		
 #TODO: Make code to generate Markov chain
 #TODO: If generated responses are weird, add more pieces of data. For example, if names are too long and/or too short, have the program collect a minimum and maximum length from the names
