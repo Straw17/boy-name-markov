@@ -35,17 +35,64 @@ predictionsDict = {'a': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], '
 'x': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], 'g': [], 'h': [], 'i': [], 'j': [], 'k': [], 'l': [], 'm': [], 'n': [], 'o': [], 'p': [], 'q': [], 'r': [], 's': [], 't': [], 'u': [], 'v': [], 'w': [], 'x': [], 'y': [], 'z': []},
 'y': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], 'g': [], 'h': [], 'i': [], 'j': [], 'k': [], 'l': [], 'm': [], 'n': [], 'o': [], 'p': [], 'q': [], 'r': [], 's': [], 't': [], 'u': [], 'v': [], 'w': [], 'x': [], 'y': [], 'z': []},
 'z': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], 'g': [], 'h': [], 'i': [], 'j': [], 'k': [], 'l': [], 'm': [], 'n': [], 'o': [], 'p': [], 'q': [], 'r': [], 's': [], 't': [], 'u': [], 'v': [], 'w': [], 'x': [], 'y': [], 'z': []}}
-totalValue = 0
+nameLens = []
 
-#TODO: Make code to load file and sort it
 txtFile = open('C:\\Users\\Evan Conway\\Desktop\\Programming\\Python\\Algorithms\\Markov Chain\\Names and Values.txt')
 namesAndValues = txtFile.read()
 namesAndValues = namesAndValues.split('\n')
 for item in range(len(namesAndValues)):
 	namesAndValues[item] = namesAndValues[item].split(':')
-	#TODO: Make code to extract data from the sorted file
 	for value in range(int(namesAndValues[item][1])):
 		name = namesAndValues[item][0]
-		
-#TODO: Make code to generate Markov chain
-#TODO: If generated responses are weird, add more pieces of data. For example, if names are too long and/or too short, have the program collect a minimum and maximum length from the names
+		nameLens.append(len(name))
+		name = '$$' + name.lower() + '#'
+		for letter in range(len(name)):
+			if name[letter] == '$':
+				continue
+			elif name[letter] == '#':
+				predictionsDict[name[letter - 2]][name[letter - 1]].append(name[letter])
+				break
+			else:
+				if name[letter - 2] == '$':
+					if name[letter - 1] == '$':
+						firstLetterPredictions.append(name[letter])
+					else:
+						secondLetterPredictions[name[letter - 1]].append(name[letter])
+				else:
+					predictionsDict[name[letter - 2]][name[letter - 1]].append(name[letter])
+
+nameLenMin = min(nameLens)
+nameLenMax = max(nameLens)
+
+def makeName(firstLetterPredictions, secondLetterPredictions, predictionsDict, nameLenMin, nameLenMax):
+	repetitions = 0
+	minPauses = 0
+	nameString = ''
+	while True:
+		if repetitions > nameLenMax:
+			break
+		elif repetitions == 0:
+			newLetter = firstLetterPredictions[random.randint(0, len(firstLetterPredictions))]
+			nameString += newLetter
+			repetitions += 1
+		elif repetitions == 1:
+			newLetter = secondLetterPredictions[nameString[0]][random.randint(0, len(secondLetterPredictions[nameString[0]]))]
+			nameString += newLetter
+			repetitions += 1
+		else:
+			newLetter = predictionsDict[nameString[repetitions - 2]][nameString[repetitions - 1]][random.randint(0, len(predictionsDict[nameString[0]]))]
+			if newLetter == '#':
+				if minPauses == 10:
+					break
+				if repetitions < nameLenMin:
+					minPauses += 1
+					continue
+				else:
+					break
+			else:
+				repetitions += 1
+			nameString += newLetter
+	nameString = nameString[0].upper() + nameString[1:]
+	return nameString
+
+print(makeName(firstLetterPredictions, secondLetterPredictions, predictionsDict, nameLenMin, nameLenMax))
