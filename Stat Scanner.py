@@ -2,8 +2,8 @@
 
 numbers = '0123456789.'
 letters = 'abcdefghijklmnopqrstuvwxyz'
-page = open('C:\\Users\\Evan Conway\\Desktop\\Programming\\Python\\Algorithms\\Markov Chain\\Stats Raw.txt')
-NamesAndValuesFile = open('C:\\Users\\Evan Conway\\Desktop\\Programming\\Python\\Algorithms\\Markov Chain\\Stats Raw.txt')
+page = open('C:\\Users\\Evan Conway\\Desktop\\Programming\\Python\\Algorithms and Math\\Markov Chain\\Stats Raw.txt')
+NamesAndValuesFile = open('C:\\Users\\Evan Conway\\Desktop\\Programming\\Python\\Algorithms and Math\\Markov Chain\\Stats Raw.txt')
 text = page.read().lower()
 text = text.split('\n')
 NamesAndValues = ''

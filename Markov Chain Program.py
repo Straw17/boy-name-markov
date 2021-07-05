@@ -37,7 +37,7 @@ predictionsDict = {'a': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], '
 'z': {'a': [], 'b': [], 'c': [], 'd': [], 'e': [], 'f': [], 'g': [], 'h': [], 'i': [], 'j': [], 'k': [], 'l': [], 'm': [], 'n': [], 'o': [], 'p': [], 'q': [], 'r': [], 's': [], 't': [], 'u': [], 'v': [], 'w': [], 'x': [], 'y': [], 'z': []}}
 nameLens = []
 
-txtFile = open('C:\\Users\\Evan Conway\\Desktop\\Programming\\Python\\Algorithms\\Markov Chain\\Names and Values.txt')
+txtFile = open('C:\\Users\\Evan Conway\\Desktop\\Programming\\Python\\Algorithms and Math\\Markov Chain\\Names and Values.txt')
 namesAndValues = txtFile.read()
 namesAndValues = namesAndValues.split('\n')
 for item in range(len(namesAndValues)):
@@ -95,4 +95,8 @@ def makeName(firstLetterPredictions, secondLetterPredictions, predictionsDict, n
 	nameString = nameString[0].upper() + nameString[1:]
 	return nameString
 
-print(makeName(firstLetterPredictions, secondLetterPredictions, predictionsDict, nameLenMin, nameLenMax))
+def run():
+        print(makeName(firstLetterPredictions, secondLetterPredictions, predictionsDict, nameLenMin, nameLenMax))
+
+for i in range(int(input("Enter number of names to generate: "))):
+        run()
